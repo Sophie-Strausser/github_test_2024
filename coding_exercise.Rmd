@@ -1,0 +1,53 @@
+---
+title: "coding_exercise"
+author: "Sophie Strausser"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+source("setup.R")
+```
+
+```{r}
+data("knz_bison")
+```
+
+1.
+```{r}
+knz_mutate <- knz_bison %>%
+  mutate(age = rec_year - animal_yob)
+  
+```
+
+
+2.
+```{r}
+bison_function <- function(n)
+{knz_mutate %>%
+    filter(animal_weight == n)}
+
+bison_function(890) %>%
+  view()
+```
+
+
+
+3.
+```{r}
+knz_mutate %>%
+  ggplot(aes(x = animal_sex, y = animal_weight)) +
+  geom_boxplot()
+```
+
+```{r}
+knz_mutate %>%
+  drop_na(animal_weight) %>%
+  order = c("F", "M") %>%
+  t_test(animal_weight ~ animal_sex, var.equal = FALSE, detailed = TRUE)
+```
+
+
+
